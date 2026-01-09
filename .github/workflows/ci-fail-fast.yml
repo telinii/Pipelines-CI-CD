@@ -1,0 +1,19 @@
+name: CI - Fail Fast
+
+on: [push, pull_request]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v3
+
+      - name: Instalar dependências
+        run: npm install   # ou pip install -r requirements.txt
+
+      - name: Testes Unitários
+        run: npm test      # ou pytest, dependendo da linguagem
+
+      - name: Testes de Integração
+        run: npm run test:integration
